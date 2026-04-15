@@ -11,6 +11,10 @@ public class ComparableDummy implements Comparable<ComparableDummy>{
 
     private int id;
 
+    public ComparableDummy(int id) {
+        this.id = id;
+    }
+
     @Override
     public int compareTo(ComparableDummy o) {
         return id - o.getId();

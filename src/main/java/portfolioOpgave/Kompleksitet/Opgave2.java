@@ -7,6 +7,7 @@ public class Opgave2 {
     public static void main(String[] args) {
         ArrayListVsLinkedList();
         ArrayListVsHashSet();
+        HashSetVsTreeSet();
     }
 
     private static void ArrayListVsLinkedList(){
@@ -71,6 +72,44 @@ public class Opgave2 {
         System.out.println();
     }
 
+    private static void HashSetVsTreeSet() {
+        int amount = 500000;
+        TreeSet<ComparableDummy> treeset = (TreeSet<ComparableDummy>) addComparableDataToSet(new TreeSet<ComparableDummy>(), amount);
+        HashSet<ComparableDummy> hashset = (HashSet<ComparableDummy>) addComparableDataToSet(new HashSet<ComparableDummy>(), amount);
+
+        int repeatCount = 100000;
+
+        System.out.println("treeset");
+        testSet(treeset,repeatCount);
+        System.out.println("hashset");
+        testSet(hashset,repeatCount);
+    }
+
+    private static void testSet(Set<ComparableDummy> set, int n){
+        System.out.println("adding to set");
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < n; i++){
+            set.add(new ComparableDummy((int) (Math.random()*n)));
+        }
+        System.out.println("ms: " + (System.currentTimeMillis() - start));
+        System.out.println();
+
+        System.out.println("removing from set");
+        start = System.currentTimeMillis();
+        for (int i = 0; i < n; i++){
+            set.add(new ComparableDummy((int) (Math.random()*set.size())));
+        }
+        System.out.println("ms: " + (System.currentTimeMillis() - start));
+        System.out.println();
+
+        System.out.println("finding in set");
+        start = System.currentTimeMillis();
+        for (int i = 0; i < n; i++){
+            set.add(new ComparableDummy((int) (Math.random()*set.size())));
+        }
+        System.out.println("ms: " + (System.currentTimeMillis() - start));
+        System.out.println();
+    }
 
     public static List<Integer> addDataToList(List<Integer> list, int amount){
         for (int i = 0; i < amount; i++){
@@ -82,6 +121,13 @@ public class Opgave2 {
     public static Set<Integer> addDataToSet(Set<Integer> set, int amount){
         for (int i = 0; i < amount; i++){
             set.add(amount-i);
+        }
+        return set;
+    }
+
+    public static Set<ComparableDummy> addComparableDataToSet(Set<ComparableDummy> set, int amount){
+        for (int i = 0; i < amount; i++){
+            set.add(new ComparableDummy(i));
         }
         return set;
     }
