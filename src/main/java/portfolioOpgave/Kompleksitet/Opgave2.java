@@ -12,8 +12,8 @@ public class Opgave2 {
 
     private static void ArrayListVsLinkedList(){
         int amount = 500000;
-        ArrayList<Integer> arrayList = (ArrayList<Integer>) addDataToList(new ArrayList<Integer>(), amount);
-        LinkedList<Integer> linkedList = (LinkedList<Integer>) addDataToList(new LinkedList<Integer>(), amount);
+        ArrayList<Integer> arrayList = (ArrayList<Integer>) addDataToList(new ArrayList<>(), amount);
+        LinkedList<Integer> linkedList = (LinkedList<Integer>) addDataToList(new LinkedList<>(), amount);
 
         System.out.println("Arraylists");
         testList(arrayList);
@@ -25,57 +25,61 @@ public class Opgave2 {
     private static void testList(List<Integer> list){
         System.out.println("get");
         long start = System.currentTimeMillis();
-        System.out.println(list.get((int)list.size()/2));
+        System.out.println(list.get(list.size()/2));
         System.out.println("ms: " + (System.currentTimeMillis() - start));
         System.out.println();
 
         System.out.println("add");
         start = System.currentTimeMillis();
-        list.add((int)list.size()/2,99);
+        list.add(list.size()/2,99);
         System.out.println("ms: " + (System.currentTimeMillis() - start));
         System.out.println();
 
         System.out.println("remove");
         start = System.currentTimeMillis();
-        list.remove((int)list.size()/2);
+        list.remove(list.size()/2);
         System.out.println("ms: " + (System.currentTimeMillis() - start));
         System.out.println();
     }
 
     private static void ArrayListVsHashSet(){
         int amount = 500000;
-        ArrayList<Integer> arrayList = (ArrayList<Integer>) addDataToList(new ArrayList<Integer>(), amount);
-        HashSet<Integer> hashset = (HashSet<Integer>) addDataToSet(new HashSet<Integer>(), amount);
+        ArrayList<Integer> arrayList = (ArrayList<Integer>) addDataToList(new ArrayList<>(), amount);
+        HashSet<Integer> hashset = (HashSet<Integer>) addDataToSet(new HashSet<>(), amount);
 
         System.out.println("ArrayList");
+
         System.out.println("Contains");
         long start = System.currentTimeMillis();
-        System.out.println(arrayList.contains((int)amount/2));
+        System.out.println(arrayList.contains(amount/2));
         System.out.println("ms: " + (System.currentTimeMillis() - start));
         System.out.println();
+
         System.out.println("Does not Contains");
         start = System.currentTimeMillis();
-        System.out.println(arrayList.contains((int)amount*2));
+        System.out.println(arrayList.contains(amount*2));
         System.out.println("ms: " + (System.currentTimeMillis() - start));
         System.out.println();
 
         System.out.println("Hashset");
+
         System.out.println("Contains");
         start = System.currentTimeMillis();
-        System.out.println(hashset.contains((int)amount/2));
+        System.out.println(hashset.contains(amount/2));
         System.out.println("ms: " + (System.currentTimeMillis() - start));
         System.out.println();
+
         System.out.println("Does not Contains");
         start = System.currentTimeMillis();
-        System.out.println(hashset.contains((int)amount*2));
+        System.out.println(hashset.contains(amount*2));
         System.out.println("ms: " + (System.currentTimeMillis() - start));
         System.out.println();
     }
 
     private static void HashSetVsTreeSet() {
         int amount = 500000;
-        TreeSet<ComparableDummy> treeset = (TreeSet<ComparableDummy>) addComparableDataToSet(new TreeSet<ComparableDummy>(), amount);
-        HashSet<ComparableDummy> hashset = (HashSet<ComparableDummy>) addComparableDataToSet(new HashSet<ComparableDummy>(), amount);
+        TreeSet<ComparableDummy> treeset = (TreeSet<ComparableDummy>) addComparableDataToSet(new TreeSet<>(), amount);
+        HashSet<ComparableDummy> hashset = (HashSet<ComparableDummy>) addComparableDataToSet(new HashSet<>(), amount);
 
         int repeatCount = 100000;
 
