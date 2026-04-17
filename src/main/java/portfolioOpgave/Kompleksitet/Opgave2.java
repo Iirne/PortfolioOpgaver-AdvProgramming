@@ -11,7 +11,7 @@ public class Opgave2 {
     }
 
     private static void ArrayListVsLinkedList(){
-        int amount = 500000;
+        int amount = 50000000;
         ArrayList<Integer> arrayList = (ArrayList<Integer>) addDataToList(new ArrayList<>(), amount);
         LinkedList<Integer> linkedList = (LinkedList<Integer>) addDataToList(new LinkedList<>(), amount);
 
@@ -43,7 +43,7 @@ public class Opgave2 {
     }
 
     private static void ArrayListVsHashSet(){
-        int amount = 500000;
+        int amount = 50000000;
         ArrayList<Integer> arrayList = (ArrayList<Integer>) addDataToList(new ArrayList<>(), amount);
         HashSet<Integer> hashset = (HashSet<Integer>) addDataToSet(new HashSet<>(), amount);
 
@@ -81,7 +81,7 @@ public class Opgave2 {
         TreeSet<ComparableDummy> treeset = (TreeSet<ComparableDummy>) addComparableDataToSet(new TreeSet<>(), amount);
         HashSet<ComparableDummy> hashset = (HashSet<ComparableDummy>) addComparableDataToSet(new HashSet<>(), amount);
 
-        int repeatCount = 100000;
+        int repeatCount = 1000000;
 
         System.out.println("treeset");
         testSet(treeset,repeatCount);
