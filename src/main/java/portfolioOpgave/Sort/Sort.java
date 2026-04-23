@@ -7,15 +7,6 @@ public class Sort {
     public static void main(String[] args) {
         int n = 10;
         int[] array = getRandomArray(n);
-/*
-        System.out.println("Bubblesort");
-        long start = System.currentTimeMillis();
-        bubbleSort(array);
-        System.out.println("ms: " + (System.currentTimeMillis() - start));
-        System.out.println("is array sorted:" + isSorted(array));
-        System.out.println();
-
-        array = getRandomArray(n);
 
         System.out.println("Mergesort");
         long start = System.currentTimeMillis();
@@ -23,17 +14,24 @@ public class Sort {
         System.out.println("ms: " + (System.currentTimeMillis() - start));
         System.out.println("is array sorted:" + isSorted(array));
         System.out.println();
-*/
+
         array = getRandomArray(n);
 
         System.out.println("Quicksort");
-        long start = System.currentTimeMillis();
+        start = System.currentTimeMillis();
         quicksort(array,0,array.length-1);
-        Arrays.stream(array).forEach(System.out::println);
         System.out.println("ms: " + (System.currentTimeMillis() - start));
         System.out.println("is array sorted:" + isSorted(array));
         System.out.println();
 
+        array = getRandomArray(n);
+
+        System.out.println("Bubblesort");
+        start = System.currentTimeMillis();
+        bubbleSort(array);
+        System.out.println("ms: " + (System.currentTimeMillis() - start));
+        System.out.println("is array sorted:" + isSorted(array));
+        System.out.println();
     }
 
     private static int[] bubbleSort(int[] array){
@@ -88,7 +86,7 @@ public class Sort {
         int i = low, pivot = array[high];
         //looper gennem alle tal i array og hvis de er lavere end pivot bliver de rykket til starten
         for(int j = low; j < high; j++){
-            if(array[pivot]>array[j]){
+            if(pivot>array[j]){
 
                 int carrier = array[j];
                 array[j] = array[i];
