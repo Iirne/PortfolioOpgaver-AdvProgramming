@@ -1,10 +1,11 @@
 package portfolioOpgave.Sort;
 
+import javax.print.DocFlavor;
 import java.util.Arrays;
 
 public class Sort {
     public static void main(String[] args) {
-        int n = 10000000;
+        int n = 10;
         int[] array = getRandomArray(n);
 /*
         System.out.println("Bubblesort");
@@ -14,8 +15,6 @@ public class Sort {
         System.out.println("is array sorted:" + isSorted(array));
         System.out.println();
 
-
-*/
         array = getRandomArray(n);
 
         System.out.println("Mergesort");
@@ -24,11 +23,13 @@ public class Sort {
         System.out.println("ms: " + (System.currentTimeMillis() - start));
         System.out.println("is array sorted:" + isSorted(array));
         System.out.println();
+*/
         array = getRandomArray(n);
 
         System.out.println("Quicksort");
-        start = System.currentTimeMillis();
+        long start = System.currentTimeMillis();
         quicksort(array,0,array.length-1);
+        Arrays.stream(array).forEach(System.out::println);
         System.out.println("ms: " + (System.currentTimeMillis() - start));
         System.out.println("is array sorted:" + isSorted(array));
         System.out.println();
@@ -55,8 +56,8 @@ public class Sort {
         //splits the array in 2 halves
         //in cases of unequal lengths the right gets more
         //[0], [1, 2]
-        int[] leftHalf = Arrays.copyOfRange(array,0,(array.length/2));
-        int[] rightHalf = Arrays.copyOfRange(array,(array.length/2),array.length);
+        int[] leftHalf = Arrays.copyOfRange(array,0,(int)(array.length/2));
+        int[] rightHalf = Arrays.copyOfRange(array,(int)(array.length/2),array.length);
 
         mergeSort(leftHalf);
         mergeSort(rightHalf);
@@ -78,29 +79,33 @@ public class Sort {
     }
 
     private static int[] quicksort(int[] array, int low, int high){
+        //hvis low er lig eller højere end high (f.eks. hvis den del af arrayen der sorteres har en "lægnde" på 1)
         if (low >= high){
             return array;
         }
-
+        //i er indeks hvori at tal før indekset er laverer og tal efter er højere
+        //pivot er den værdi for vores pivot point, da den først bliver rykket til dens endelige plads til sidst bliver det gemt
         int i = low, pivot = array[high];
+        //looper gennem alle tal i array og hvis de er lavere end pivot bliver de rykket til starten
         for(int j = low; j < high; j++){
-            if(array[j]<pivot){
-                Swap(array,i,j);
+            if(array[pivot]>array[j]){
+
+                int carrier = array[j];
+                array[j] = array[i];
+                array[i] = carrier;
                 i++;
             }
         }
-        Swap(array,i,high);
+        //efter loop bliver vores pivot byttet til den indeks således at alle tal før er lavere og alle tal efter er højere
+        int carrier = array[high];
+        array[high] = array[i];
+        array[i] = carrier;
 
+        //kører samme funktion på første halvdel og anden halvdel undtagen vores pivot punkt
         quicksort(array,low, i-1);
         quicksort(array, i+1, high);
 
         return array;
-    }
-
-    private static void Swap(int[] array,int i, int j){
-        int carrier = array[j];
-        array[j] = array[i];
-        array[i] = carrier;
     }
 
     private static int[] getRandomArray(int n){
