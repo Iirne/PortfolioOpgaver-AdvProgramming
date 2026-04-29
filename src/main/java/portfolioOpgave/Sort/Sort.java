@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Sort {
     public static void main(String[] args) {
-        int n = 10;
+        int n = 10000;
         int[] array = getRandomArray(n);
 
         System.out.println("Mergesort");
